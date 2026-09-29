@@ -71,16 +71,33 @@ string display(Stack& s) {
 
 // SOAL 1
 bool push(Stack& s, int nilai) {
-    return false;
+    Node* newNode = new Node;
+    newNode->data = nilai;
+    newNode->next = s.top;
+    s.top = newNode;
+    return true;
 }
 
 // SOAL 2
 bool pop(Stack& s, int& nilai) {
+    if (isEmpty(s))
     return false;
+
+    Node* temp = s.top;
+    nilai = temp->data;
+    s.top = temp->next;
+    delete temp;
+    return true;
 }
 
 // SOAL 3
 void clear(Stack& s) {
+    Node* hapus;
+    while (s.top != nullptr) {
+        hapus = s.top;
+        s.top = s.top->next;
+        delete hapus;
+    }
 }
 
 // SOAL 4
